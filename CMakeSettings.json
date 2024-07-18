@@ -1,0 +1,15 @@
+{
+	"configurations": [
+		{
+			"name": "x86-Debug",
+			"generator": "Ninja",
+			"configurationType": "Debug",
+			"buildRoot": "${projectDir}\\${name}",
+			"installRoot": "${projectDir}\\out\\install\\${name}",
+			"cmakeCommandArgs": "",
+			"buildCommandArgs": "",
+			"ctestCommandArgs": "",
+			"inheritEnvironments": [ "msvc_x86" ]
+		}
+	]
+}

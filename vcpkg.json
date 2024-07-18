@@ -1,0 +1,20 @@
+{
+	"name": "gblp",
+	"version": "0",
+	"builtin-baseline": "b40de44891dc1cab11d4722094ae44807a837b98",
+	"vcpkg-configuration": {
+		"overlay-ports": [
+		]
+	},
+	"dependencies": [
+		{
+			"host": true,
+			"name": "pkgconf"
+		},
+		"libsquish",
+		"libpng",
+		"zlib",
+		"glm",
+		"gtk"
+	]
+}

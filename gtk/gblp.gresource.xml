@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+	<gresource prefix="/gblp">
+		<file preprocess="xml-stripblanks">gblp-app-menu.ui</file>
+		<file preprocess="xml-stripblanks">gblp-app-window.ui</file> 
+	</gresource>
+</gresources>
