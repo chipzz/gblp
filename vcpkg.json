@@ -1,0 +1,18 @@
+{
+	"$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+	"name": "gblp",
+	"version": "0",
+	"builtin-baseline": "b40de44891dc1cab11d4722094ae44807a837b98",
+	"vcpkg-configuration": {
+		"overlay-ports": [
+		]
+	},
+	"dependencies": [
+		"pkgconf",
+		"libsquish",
+		"libpng",
+		"zlib",
+		"glm",
+		"gtk"
+	]
+}

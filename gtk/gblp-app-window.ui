@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<requires lib="gtk" version="4.0"/>
+	<object class="GtkAdjustment" id="mipmap_adjustment">
+		<property name="upper">16</property>
+		<property name="step_increment">1</property>
+		<property name="page_increment">1</property>
+		<signal name="value-changed" handler="adjustment_changed" object="GBLPAppWindow" swapped="yes"/>
+	</object>
+	<template class="GBLPAppWindow" parent="GtkApplicationWindow">
+		<property name="default_width">400</property>
+		<property name="default_height">600</property>
+		<property name="show_menubar">True</property>
+		<child>
+			<object class="GtkBox" id="main_box">
+				<property name="orientation">vertical</property>
+				<property name="spacing">6</property>
+				<child>
+					<object class="GtkBox" id="pane">
+<!--
+						<property name="orientation">vertical</property>
+						<property name="spacing">6</property>
+-->
+						<child>
+							<object class="GtkButton">
+								<property name="label" translatable="1">_Import</property>
+								<property name="action-name">win.import</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkGLArea" id="glarea">
+								<signal name="realize" handler="gblp_app_window_glarea_realize" object="glarea" swapped="yes"/>
+								<signal name="unrealize" handler="gblp_app_window_glarea_unrealize" object="glarea" swapped="yes"/>
+								<signal name="render" handler="gblp_app_window_glarea_render" object="glarea" swapped="yes"/>
+								<signal name="resize" handler="gblp_app_window_glarea_resize" object="glarea" swapped="yes"/>
+								<property name="hexpand">1</property>
+								<property name="vexpand">1</property>
+							</object>
+						</child>
+					</object>
+				</child>
+				<child>
+					<object class="GtkBox" id="controls_box">
+						<property name="orientation">vertical</property>
+						<property name="spacing">6</property>
+						<child>
+							<object class="GtkBox" id="x_box">
+								<property name="spacing">6</property>
+								<child>
+									<object class="GtkLabel">
+										<property name="label" translatable="1">MipMap Level</property>
+									</object>
+								</child>
+								<child>
+									<object class="GtkScale" id="x_scale">
+										<property name="hexpand">1</property>
+										<property name="draw-value">1</property>
+										<property name="focusable">1</property>
+										<property name="adjustment">mipmap_adjustment</property>
+										<property name="fill_level">360</property>
+										<property name="round_digits">1</property>
+										<property name="value_pos">right</property>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</child>
+			</object>
+		</child>
+	</template>
+	<!--
+	<object class="GtkSizeGroup" id="sizegroup1">
+		<widgets>
+			<widget name="label1"/>
+		</widgets>
+	</object>
+	-->
+</interface>
