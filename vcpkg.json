@@ -1,0 +1,17 @@
+{
+	"name": "blpconverter",
+	"version": "8.5",
+	"builtin-baseline": "b40de44891dc1cab11d4722094ae44807a837b98",
+	"vcpkg-configuration": {
+		"overlay-ports": [
+		]
+	},
+	"dependencies": [
+		"libsquish",
+		"libpng",
+		"zlib",
+		"pkgconf",
+		"gtk",
+		"glm"
+	]
+}
