@@ -18,6 +18,42 @@ endif()
 
 pkg_check_modules(GTK REQUIRED IMPORTED_TARGET gtk4)
 pkg_get_variable(GLIB_COMPILE_RESOURCES "gio-2.0" glib_compile_resources)
+if (MSVC)
+message(CHECK_START "Updating pixbuf loader cache for rsvg pixbuf loader...")
+
+pkg_get_variable(BINDIR "gdk-pixbuf-2.0" bindir)
+pkg_get_variable(GDK_PIXBUF_QUERY_LOADERS "gdk-pixbuf-2.0" gdk_pixbuf_query_loaders)
+pkg_get_variable(GDK_PIXBUF_MODULEDIR "gdk-pixbuf-2.0" gdk_pixbuf_moduledir)
+#message("GDK_PIXBUF_MODULEDIR=${GDK_PIXBUF_MODULEDIR}")
+#string(REPLACE "/" "\\" GDK_PIXBUF_MODULEDIR ${GDK_PIXBUF_MODULEDIR})
+pkg_get_variable(GDK_PIXBUF_CACHE_FILE "gdk-pixbuf-2.0" gdk_pixbuf_cache_file)
+
+set(ENV{GDK_PIXBUF_MODULEDIR} ${GDK_PIXBUF_MODULEDIR})
+set(ENV{GDK_PIXBUF_MODULE_FILE} ${GDK_PIXBUF_CACHE_FILE})
+execute_process(COMMAND "${GDK_PIXBUF_QUERY_LOADERS}" --update-cache
+	WORKING_DIRECTORY ${BINDIR}
+	OUTPUT_VARIABLE output
+	ERROR_VARIABLE error
+)
+if(error)
+	message(CHECK_FAIL "FAILED")
+
+	message("gdk-pixbuf-query-loaders environment:")
+	message("BINDIR=${BINDIR}")
+	message("GDK_PIXBUF_QUERY_LOADERS=${GDK_PIXBUF_QUERY_LOADERS}")
+	message("GDK_PIXBUF_MODULEDIR=${GDK_PIXBUF_MODULEDIR}")
+	message("GDK_PIXBUF_MODULE_FILE=${GDK_PIXBUF_CACHE_FILE}")
+	message("")
+
+	message("gdk-pixbuf-query-loaders error:")
+	message(${error})
+	message("gdk-pixbuf-query-loaders output:")
+	message(${output})
+else()
+	message(CHECK_PASS "SUCCESS")
+endif()
+endif()
+
 pkg_check_modules(Epoxy REQUIRED IMPORTED_TARGET epoxy)
 
 file(GLOB PALBMP_SRC "palbmp/*.c")

@@ -13,6 +13,10 @@
 		"libpng",
 		"zlib",
 		"glm",
+		{
+			"name": "librsvg",
+			"platform": "windows"
+		},
 		"gtk"
 	]
 }
