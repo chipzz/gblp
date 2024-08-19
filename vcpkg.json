@@ -12,6 +12,10 @@
 		"zlib",
 		"pkgconf",
 		"gtk",
+		{
+			"name": "librsvg",
+			"platform": "windows"
+		},
 		"glm"
 	]
 }
