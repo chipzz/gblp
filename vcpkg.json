@@ -8,7 +8,6 @@
 	},
 	"dependencies": [
 		{
-			"host": true,
 			"name": "pkgconf"
 		},
 		"libsquish",
