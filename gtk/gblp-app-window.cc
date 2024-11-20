@@ -54,6 +54,17 @@ static OpenGlResources &gblp_app_window_glarea_get_glresources(GtkGLArea *const 
 	return GBLP_APP_WINDOW(gtk_widget_get_root(GTK_WIDGET(area)))->opengl_resources;
 }
 
+static void print_mvp(float *const mvp, const size_t dim)
+{
+	for (size_t x = 0; x < dim; x++)
+	{
+		for (size_t y = 0; y < dim; y++)
+			printf("%f ", mvp[y * dim + x]);
+		printf("\n");
+	}
+	printf("\n");
+}
+
 #include <glm/gtc/type_ptr.hpp>
 #if 0
 #include <glm/gtc/matrix_transform.hpp>
@@ -77,8 +88,12 @@ static void gblp_app_window_glarea_resize(GtkGLArea *const area, gint viewport_w
 	float mvp[16];
 */
 	glm::mat4 mvp(1.0f);
+	printf("======================\n");
+	print_mvp(glm::value_ptr(mvp), 4);
 	mvp = glm::scale(mvp, glm::vec3(width / viewport_width, -height / viewport_height, 1.0f));
+	print_mvp(glm::value_ptr(mvp), 4);
 	mvp = glm::translate(mvp, glm::vec3(-0.5f, -0.5f, 0.0f));
+	print_mvp(glm::value_ptr(mvp), 4);
 	gblp_app_window_glarea_get_glresources(area).set_mvp(glm::value_ptr(mvp));
 }
 
