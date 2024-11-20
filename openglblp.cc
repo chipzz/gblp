@@ -276,13 +276,13 @@ const char *const vertex_shader_source = R"(#version 130
 
 in vec2 position;
 
-uniform mat4 mvp;
+uniform mat3 mvp;
 
 out vec2 texture_coordinate;
 
 void main()
 {
-	gl_Position = mvp * vec4(position, 0.0, 1.0);
+	gl_Position = vec4(mvp * vec3(position, 1.0), 1.0);
 	texture_coordinate = position;
 })";
 
@@ -386,7 +386,7 @@ void OpenGlResources::init()
 #include <cstring>
 void OpenGlResources::set_mvp(float *const mvp)
 {
-	std::memcpy(this->mvp, mvp, sizeof(float) * 16);
+	std::memcpy(this->mvp, mvp, sizeof(float) * 9);
 	mvp_changed = true;
 }
 
@@ -419,7 +419,7 @@ void OpenGlResources::render()
 
 	if (mvp_changed)
 	{
-		glUniformMatrix4fv(mvp_location, 1, GL_FALSE, mvp);
+		glUniformMatrix3fv(mvp_location, 1, GL_FALSE, mvp);
 		glPrintError();
 		mvp_changed = false;
 	}
