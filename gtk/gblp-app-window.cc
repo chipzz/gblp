@@ -438,8 +438,11 @@ static void gblp_app_window_init(GBLPAppWindow *window)
 	g_action_map_add_action_entries(G_ACTION_MAP(window), gblp_app_window_action_entries, G_N_ELEMENTS(gblp_app_window_action_entries), window);
 }
 
+#include <squish.h>
+
 GBLPAppWindow *gblp_app_window_new(GtkApplication *app)
 {
+	squish::Compress(NULL, NULL, 0, NULL);
 	GBLPAppWindow *const app_window = GBLP_APP_WINDOW(g_object_new(GBLP_TYPE_APP_WINDOW, "application", app, NULL));
 	gtk_application_window_set_show_menubar(GTK_APPLICATION_WINDOW(app_window), TRUE);
 	return app_window;
